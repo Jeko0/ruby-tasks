@@ -1,14 +1,24 @@
 # frozen_string_literal: true
-class Weight 
-  puts 'Please enter your name'
-  user = gets.chomp.to_s
-    
-  puts 'Please enter your height'
-  height = gets.chomp.to_f
-    
-  if (height - 110).negative?
-    puts 'Your weight is already opimal'
-  else
-    puts "Your name is #{user}, height #{height} and your optimal weight should be #{height - 110}"
+# solution for task1 
+class Weight
+  CONVERT_TO_WEIGHT = 110
+  def initialize(user, height)
+    @user = user
+    @height = height
+  end
+
+  # calculating whether persons weight is optimal or not
+  def calculate
+    if (@height - CONVERT_TO_WEIGHT).negative?
+      puts 'Your weight is already opimal'
+    else
+      puts "Your name is #{@user}, height #{@height} and your optimal weight should be #{@height - CONVERT_TO_WEIGHT}"
+    end
   end
 end
+
+puts 'please Enter you name and height'
+user = gets.chomp.to_s
+height = gets.chomp.to_f
+person = Weight.new(user, height)
+puts person.calculate
