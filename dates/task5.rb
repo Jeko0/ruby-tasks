@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # problem5
 require 'date'
 class Date
@@ -7,11 +6,15 @@ class Date
     month_array = Date::MONTHNAMES
     valid = []
     (1...12).each do |month|
-      Date.civil(2022, month, -1).day == 30 ? valid << month_array[month] : false
+      if Date.civil(2022, month, -1).day == 30
+        valid << month_array[month]
+      else
+        puts 'invalid month'
+      end
     end
     valid
   end
 end
 
-object = Date.new
-puts object.display
+days_of_month = Date.new
+puts days_of_month.display
