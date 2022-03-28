@@ -8,7 +8,7 @@ class Pythagora
   end
 
   def pythagorean?
-    @sides[2]**2 == @sides[0]**2 + @sides[1]**2
+    @sides[2] ** 2 == @sides[0] ** 2 + @sides[1] ** 2
   end
 
   def isoscele?
