@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-#task3
+
+# task3
 class Pythagora
   def initialize(a, b, c)
     @sides = [a, b, c].sort
@@ -11,7 +12,7 @@ class Pythagora
   end
 
   def isoscele?
-    @sides.any? { |side| @sides.count(side) > 1 }
+    @sides.any? { |side| @sides.count(side) == 2 }
   end
 
   def equilateral?
@@ -22,9 +23,9 @@ class Pythagora
     if pythagorean?
       puts 'Triangle is pythagorean'
     elsif isoscele?
-      puts 'Triangle is isoscele'
+      puts 'Triangle is isoscele and rectangular'
     elsif equilateral?
-      puts 'Triangle is equilateral'
+      puts 'Triangle is equilateral but not rectangular'
     end
   end
 end
