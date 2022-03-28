@@ -17,4 +17,4 @@ puts 'Enter Triangles base and height'
 base = gets.chomp
 height = gets.chomp
 triangle1 = Triangle.new(base, height)
-puts triangle_1.area_of_triangle
+puts triangle1.area_of_triangle
