@@ -24,7 +24,7 @@ class Pythagora
       puts 'Triangle is pythagorean'
     elsif is_isoscele?
       puts 'Triangle is isoscele'
-    elsif is_sequilateral?
+    elsif is_equilateral?
       puts 'Triangle is equilateral but not rectangular'
     else 
       puts "Triangle is regular"
