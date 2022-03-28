@@ -4,7 +4,6 @@
 class Pythagora
   def initialize(a, b, c)
     @sides = [a, b, c].sort
-    raise ArgumentError if @sides.any?(&:negative?)
   end
 
   def is_pythagorean?
@@ -20,12 +19,15 @@ class Pythagora
   end
 
   def calculate
+    raise ArgumentError, "Sides must be positive" if @sides.any?(&:negative?)
     if is_pythagorean?
       puts 'Triangle is pythagorean'
     elsif is_isoscele?
-      puts 'Triangle is isoscele and rectangular'
+      puts 'Triangle is isoscele'
     elsif is_sequilateral?
       puts 'Triangle is equilateral but not rectangular'
+    else 
+      puts "Triangle is regular"
     end
   end
 end
@@ -35,6 +37,5 @@ puts 'please enter triangle side'
 a = gets.chomp.to_i
 b = gets.chomp.to_i
 c = gets.chomp.to_i
-
 triangle = Pythagora.new(a, b, c)
 puts triangle.calculate
