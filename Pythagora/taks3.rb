@@ -7,24 +7,24 @@ class Pythagora
     raise ArgumentError if @sides.any?(&:negative?)
   end
 
-  def pythagorean?
-    @sides[2]**2 == @sides[0]**2 + @sides[1]**2
+  def is_pythagorean?
+    @sides[2] ** 2 == @sides[0] ** 2 + @sides[1] ** 2
   end
 
-  def isoscele?
+  def is_isoscele?
     @sides.any? { |side| @sides.count(side) == 2 }
   end
 
-  def equilateral?
+  def is_equilateral?
     @sides.all? { |side| @sides.count(side) == 3 }
   end
 
   def calculate
-    if pythagorean?
+    if is_pythagorean?
       puts 'Triangle is pythagorean'
-    elsif isoscele?
+    elsif is_isoscele?
       puts 'Triangle is isoscele and rectangular'
-    elsif equilateral?
+    elsif is_sequilateral?
       puts 'Triangle is equilateral but not rectangular'
     end
   end
