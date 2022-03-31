@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "date"
+require 'date'
 
 class RegularDay
   def initialize(year, month, day)
@@ -10,7 +10,7 @@ class RegularDay
   end
 
   def what_day_of_the_year_is_it?
-    "Day #{Date.new(@year, @month, @day).strftime("%j")} of the year"
+    "Day #{Date.new(@year, @month, @day).strftime('%j')} of the year"
   end
 end
 
