@@ -5,17 +5,17 @@ PART_OF_FORMULA = 0.5
 # solution for triangle area
 class Triangle
   def initialize(base, height)
-    @a = base.to_f
-    @h = height.to_f
+    @base = base
+    @height = height
   end
 
   def area_of_triangle
-    @a * @h * PART_OF_FORMULA
+    @base * @height * PART_OF_FORMULA
   end
 end
 
 puts 'Enter Triangles base and height'
-base = gets.chomp
-height = gets.chomp
+base = gets.chomp.to_f
+height = gets.chomp.to_f
 triangle1 = Triangle.new(base, height)
 puts triangle1.area_of_triangle
