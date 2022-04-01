@@ -2,8 +2,8 @@
 
 class Purchase
   def initialize
-    @purchase = {}
-    @amount = {}
+    @purchase = Hash.new
+    @amount = Hash.new
   end
 
   def user_input
