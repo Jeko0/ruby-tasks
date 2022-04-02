@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class Purchase
+  attr_reader :amount
+
   def initialize
-    @purchase = Hash.new
-    @amount = Hash.new
+    @purchase = {}
+    @amount = {}
   end
 
   def user_input
@@ -25,19 +27,11 @@ class Purchase
   def item_amount
     @purchase.each { |key, value| @amount[key] = value[:product_price] * value[:product_quantity] }
   end
-
-  def display_item_amount
-    @amount
-  end
-
-  def display_total_price
-    @amount.values.sum
-  end
 end
 
 person = Purchase.new
 
 person.user_input
 person.item_amount
-person.display_item_amount.each { |key, value| puts "#{key} total amount is #{value}" }
-puts "total amount of all product is #{person.display_total_price}"
+person.amount.each { |key, value| puts "#{key} total amount is #{value}" }
+puts "total amount of all product is #{person.amount.values.sum}"
