@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 HEIGHT_TO_WEIGHT = 110
+EDGE = 0
 
 class CalculateIdealWeight
   class InvalidError < StandardError; end
@@ -33,7 +34,7 @@ class CalculateIdealWeight
   end
 
   def calculate_weight
-    if user_ideal_weight <= 0
+    if user_ideal_weight <= EDGE
       puts "#{@name.capitalize}, your weight is already optimal"
     else
       puts "name: #{@name.capitalize}\nheight: #{@height}\nideal weight: #{user_ideal_weight}"
