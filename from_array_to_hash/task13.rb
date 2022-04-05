@@ -12,6 +12,7 @@ class ArrayhashValue
   def tranform_array_to_hash
     COMPUTER_LANGUAGES.each_with_object({}) do |lang, hash|
       hash[lang] = lang.length
+      hash
     end
   end
 end
