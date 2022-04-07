@@ -31,35 +31,3 @@ end
 
 puts FactorialFinder.new(10).call
 
-# with recursion
-
-# frozen_string_literal: true
-
-PREVIOUS_NUM = 1
-LIMIT = 0
-
-class Factorial
-  def initialize(input)
-    @input = input
-  end
-
-  def call
-    input_validation
-    factorial_with_recursion(@input)
-  rescue ArgumentError => e
-    warn e
-  end
-
-  private
-
-  def factorial_with_recursion(num)
-    PREVIOUS_NUM if num == LIMIT
-    num * factorial_with_recursion(num - PREVIOUS_NUM)
-  end
-
-  def input_validation
-    raise ArgumentError, "Invalid Input" unless @input.is_a?(Integer) && (@input.positive? || @input.zero?)
-  end
-end
-
-puts Factorial.new(10).call
