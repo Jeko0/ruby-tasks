@@ -2,19 +2,20 @@
 
 COMPUTER_LANGUAGES = %w[Ruby Python Java .NET HTML JavaScript].freeze
 
-class ArrayhashValue
+# count number of characters in each array element
+class Countcharacters
   def call
-    tranform_array_to_hash
+    transform_array
   end
 
   private
 
-  def tranform_array_to_hash
-    COMPUTER_LANGUAGES.each_with_object({}) do |lang, hash|
-      hash[lang] = lang.length
+  def transform_array
+    COMPUTER_LANGUAGES.each_with_object({}) do |language, hash|
+      hash[language] = language.length
       hash
     end
   end
 end
 
-puts ArrayhashValue.new.call
+puts Countcharacters.new.call
