@@ -4,10 +4,10 @@ PART_OF_FORMULA = 2
 INCLUDING = 1
 
 class SumofDigits
-  def initialize(start_num, end_num)
+  def initialize(start_num, end_num, nth_term = 0)
     @start_num = start_num
     @end_num = end_num
-    @nth_term = 0
+    @nth_term = nth_term
   end
 
   def call
