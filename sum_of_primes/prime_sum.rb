@@ -2,21 +2,21 @@
 
 require "prime"
 
-class PrimeFinder
+class PrimeSum
   def initialize(*arr)
     @arr = arr
   end
 
   def call
     check_valid_input
-    find_prime_numbers
+    find_sum_of_primes
   rescue ArgumentError => e
     warn e
   end
 
   private
 
-  def find_prime_numbers
+  def find_sum_of_primes
     @arr.select(&:prime?).sum
   end
 
@@ -29,4 +29,4 @@ class PrimeFinder
   end
 end
 
-puts PrimeFinder.new(1, 2, 3, 4, 5, 6, 7, 8, 9).call
+puts PrimeSum.new(1, 2, 3, 4, 5, 6, 7, 8, 9).call
