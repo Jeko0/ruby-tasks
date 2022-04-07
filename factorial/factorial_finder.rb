@@ -1,5 +1,3 @@
-frozen_string_literal: true
-
 # frozen_string_literal: true
 
 FACTORIAL_START = 1
@@ -33,8 +31,9 @@ end
 
 puts FactorialFinder.new(10).call
 
-
 # with recursion
+
+# frozen_string_literal: true
 
 PREVIOUS_NUM = 1
 LIMIT = 0
@@ -47,7 +46,7 @@ class Factorial
   def call
     input_validation
     factorial_with_recursion(@input)
-  rescue InputOutputError => e
+  rescue ArgumentError => e
     warn e
   end
 
