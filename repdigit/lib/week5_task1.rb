@@ -1,25 +1,28 @@
-class RepDigit
-  class InvalidinputError < StandardError; end 
-  def initialize(number)
-    @number = number 
-  end 
+# frozen_string_literal: true
 
-  def call 
-    input_validation 
-    is_number_a_repdigit?
-  rescue InvalidinputError => e  
-     e.message
+class RepDigit
+  class InvalidinputError < StandardError; end
+
+  def initialize(number)
+    @number = number
   end
 
-  private 
+  def call
+    input_validation
+    is_number_a_repdigit?
+  rescue InvalidinputError => e
+    e.message
+  end
 
-  def is_number_a_repdigit? 
-    @number.to_s.split('').uniq.length == 1 
+  private
+
+  def is_number_a_repdigit?
+    @number.to_s.split('').uniq.length == 1
   end
 
   def input_validation
-    raise InvalidinputError, "Invalid input" unless @number.is_a? Integer
+    raise InvalidinputError, 'Invalid input' unless @number.is_a? Integer
   end
 end
 
-puts RepDigit.new(77777).call
+puts RepDigit.new(77_777).call
