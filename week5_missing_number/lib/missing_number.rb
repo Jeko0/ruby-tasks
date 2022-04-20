@@ -23,8 +23,12 @@ class NumberFinder
     MY_ARRAY - @arr
   end
 
+  def check 
+    (@arr.is_a? (Array)) && @arr.size == MAX_LENGHT && @arr.all?{|el| el.is_a? Integer}
+  end
+
   def input_validation
-   raise InvalidinputError, "invalid input" unless (@arr.is_a? (Array)) && @arr.size == MAX_LENGHT && @arr.all?{|el| el.is_a? Integer}
+   raise InvalidinputError, "invalid input" unless check
   end
 end
 
