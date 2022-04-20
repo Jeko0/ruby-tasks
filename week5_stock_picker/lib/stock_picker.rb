@@ -17,10 +17,10 @@ class StockPicker
   private
 
   def profitable_days
-    buy_value =
-      sell_value =
-        best_profit =
-          profit = 0
+    buy_value = 0
+    sell_value = 0
+    best_profit = 0
+    profit = 0
 
     (0..@stocks.length - 2).each do |i|
       profit = @stocks[i + 1..-1].max - @stocks[i]
@@ -33,8 +33,24 @@ class StockPicker
     [buy_value, sell_value]
   end
 
+  def is_valid?
+    is_integer? && is_positive? && is_array?
+  end
+
+  def is_integer?
+    @stocks.all? { |i| i.is_a?(Integer) }
+  end
+
+  def is_positive?
+    @stocks.all? { |i| !i.negative? }
+  end
+
+  def is_array?
+    @stocks.is_a? Array
+  end
+
   def input_validation
-    raise InvalidinputError, "invalid input" unless @stocks.all?{|i| (i.is_a?(Integer)) && !i.negative?} && @stocks.is_a?(Array)
+    raise InvalidinputError, "invalid input" unless is_valid?
   end
 end
 

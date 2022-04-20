@@ -39,7 +39,7 @@ describe "StockPicker" do
 
   context "when given input is invalid" do
     it "catch error when input array contain string" do
-      input = [10, 9, 8, 7, 6, 5, 4, 3, 2, '1']
+      input = [10, 9, 8, 7, 6, 5, 4, 3, 2, "1"]
       expect(StockPicker.new(input).call).to eq ERROR_MESSAGE
     end
 
