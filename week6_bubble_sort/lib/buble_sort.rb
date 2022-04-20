@@ -21,7 +21,6 @@ class BubbleSort
 
     loop do
       sorted = false
-
       (size - 1).times do |i|
         if @arr[i] > @arr[i + 1]
           @arr[i], @arr[i + 1] = @arr[i + 1], @arr[i]
@@ -33,9 +32,13 @@ class BubbleSort
     @arr
   end
 
+  def is_valid?
+    @arr.is_a?(Array) && @arr.all? { |element| element.is_a?(Numeric) }
+  end
+
   def input_validation
-    raise ArgumentError, "invalid input" unless @arr.is_a?(Array) && @arr.all? { |element| element.is_a?(Numeric) }
+    raise ArgumentError, "invalid input" unless is_valid?
   end
 end
 
- puts BubbleSort.new([4, 3, 78, 2, 0, 2]).call
+puts BubbleSort.new([4, 3, 78, 2, 0, 2]).call

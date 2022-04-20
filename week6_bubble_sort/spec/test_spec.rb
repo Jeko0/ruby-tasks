@@ -19,9 +19,9 @@ describe BubbleSort do
   end
 
   context "must raise an error" do
-    let(:str_arr) {BubbleSort.new(["a", 4, 0, 4, 8, 1])}
+    let(:str_arr) { BubbleSort.new(["a", 4, 0, 4, 8, 1]) }
 
-    it "on string input" do 
+    it "on string input" do
       expect(str_arr.call).to be("invalid input")
     end
   end
