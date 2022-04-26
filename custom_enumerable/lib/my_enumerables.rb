@@ -44,7 +44,7 @@ module Enumerable
       my_each { |i| counter += 1 if yield i }
       counter
     else 
-      count = size 
+      counter = size 
     end
   end
 
