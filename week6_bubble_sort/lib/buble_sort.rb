@@ -1,35 +1,34 @@
-# frozen_string_literal: true
-
 class BubbleSort
   attr_reader :arr
 
-  def initialize(arr)
+  def initialize(arr, sorted = false)
     @arr = arr
+    @sorted = sorted
+    @size = @arr.length
   end
 
   def call
     input_validation
-    implement_buble_sort
+    implement_bubble_sort
   rescue ArgumentError => e
     e.message
   end
 
   private
 
-  def implement_buble_sort
-    size = @arr.length
-
-    loop do
-      sorted = false
-      (size - 1).times do |i|
-        if @arr[i] > @arr[i + 1]
-          @arr[i], @arr[i + 1] = @arr[i + 1], @arr[i]
-          sorted = true
-        end
-      end
-      break unless sorted
+  def implement_bubble_sort
+    (0...@size).each do
+      logic
     end
-    @arr
+    arr
+  end
+
+  def logic
+    (1..@size - 1).each do |idx|
+      next unless arr[idx - 1] > arr[idx]
+
+      arr[idx - 1], arr[idx] = arr[idx], arr[idx - 1]
+    end
   end
 
   def is_valid?
