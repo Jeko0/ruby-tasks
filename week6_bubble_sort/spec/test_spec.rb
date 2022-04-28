@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "buble_sort"
 
 describe BubbleSort do
