@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "stock_picker"
 
 ERROR_MESSAGE = "invalid input"

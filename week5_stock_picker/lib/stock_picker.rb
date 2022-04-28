@@ -1,10 +1,12 @@
-# frozen_string_literal: true
-
 class StockPicker
   class InvalidinputError < StandardError; end
 
-  def initialize(stocks)
+  def initialize(stocks, buy_value = 0, sell_value = 0, best_profit = 0, profit = 0)
     @stocks = stocks
+    @buy_value = buy_value 
+    @sell_value = sell_value
+    @best_profit = best_profit
+    @profit = profit
   end
 
   def call
@@ -17,20 +19,15 @@ class StockPicker
   private
 
   def profitable_days
-    buy_value = 0
-    sell_value = 0
-    best_profit = 0
-    profit = 0
-
     (0..@stocks.length - 2).each do |i|
-      profit = @stocks[i + 1..-1].max - @stocks[i]
-      next unless profit > best_profit
+      @profit = @stocks[i + 1..-1].max - @stocks[i]
+      next unless @profit > @best_profit
 
-      best_profit = profit
-      buy_value = i
-      sell_value = @stocks.index(@stocks[i + 1..-1].max)
+      @best_profit = @profit
+      @buy_value = i
+      @sell_value = @stocks.index(@stocks[i + 1..-1].max)
     end
-    [buy_value, sell_value]
+    [@buy_value, @sell_value]
   end
 
   def is_valid?
@@ -54,4 +51,4 @@ class StockPicker
   end
 end
 
-puts StockPicker.new([17, 3, 6, 9, 15, 8, 6, 1, 10]).call
+ puts StockPicker.new([17, 3, 6, 9, 15, 8, 6, 1, 10]).call
