@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 REPEATE_COUNT = 9
 TURN_SWITCHER = 2
 NEXT_TURN = 1
@@ -8,20 +6,23 @@ class Game
   @@PLAYER_ONE = 0
   @@PLAYER_TWO = 1
 
-  def initialize; end
+  attr_accessor :board, :row_index, :col_index, :turn
 
-  def call
-    play
+  def initialize
+    @row_index = %w[A B C]
+    @col_index = %w[D E F]
+    @board = Array.new(3) { Array.new(3) }
+    @turn = @@PLAYER_ONE
   end
 
-  private
-
-  def make_move(board, row, col, turn)
+  def make_move(_board, row, col, turn)
     print turn == @@PLAYER_ONE ? "First player's turn: " : "Second player's turn: "
+
     loop do
       move = gets.chomp.upcase.chars.sort
-      if board[row.index(move[0])][col.index(move[1])].nil?
-        board[row.index(move[0])][col.index(move[1])] = (turn == @@PLAYER_ONE ? 'X' : 'O')
+      # need help with this one :) 
+      if @board[row.index(move[0])][col.index(move[1])].nil?
+        @board[row.index(move[0])][col.index(move[1])] = (turn == @@PLAYER_ONE ? 'X' : 'O')
         return
       end
       print 'Spot taken. Try again: '
@@ -45,37 +46,38 @@ class Game
     val
   end
 
-  def game_won?(board, _turn)
-    row_win = board
-    col_win = board.transpose
-    diagonal_win = [[board[0][0], board[1][1], board[2][2]], [board[0][2], board[1][1], board[2][0]]]
-    wins = row_win + col_win + diagonal_win
-
+  def game_won?(board)
+    diagonal_win = [
+      [board[0][0], board[1][1], board[2][2]],
+      [board[0][2], board[1][1], board[2][0]]
+    ]
+    wins = board + board.transpose + diagonal_win
     wins.each { |try| return true if try.uniq.length == 1 && !try[0].nil? }
     false
   end
 
   def play
-    row_index = %w[A B C]
-    col_index = %w[D E F]
-    board = Array.new(3) { Array.new(3) }
-    turn = @@PLAYER_ONE
-
     puts "\nLet's Play Tic-Tac-Toe\n"
     implement_board(board, row_index, col_index)
+    counter_increment
+  end
 
+  def counter_increment
     REPEATE_COUNT.times do
-      make_move(board, row_index, col_index, turn)
-      implement_board(board, row_index, col_index)
-      if game_won?(board, turn)
-        puts "Congratulations. Player #{turn == @@PLAYER_ONE ? 'one' : 'two'} won!"
-        return
-      end
-      turn = (turn + NEXT_TURN) % TURN_SWITCHER
-    end
+      break if increment_logic
 
-    puts "It's a tie!"
+      @turn = (@turn + NEXT_TURN) % TURN_SWITCHER
+    end
+  end
+
+  def increment_logic
+    make_move(board, row_index, col_index, turn)
+    implement_board(board, row_index, col_index)
+    if game_won?(board)
+      puts "Congratulations. Player #{turn == @@PLAYER_ONE ? 'one' : 'two'} won!"
+      true
+    end
   end
 end
 
-Game.new.call
+Game.new.play
