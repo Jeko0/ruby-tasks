@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.configure do |config|
   config.formatter = :documentation
   config.expect_with :rspec do |expectations|
