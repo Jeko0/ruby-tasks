@@ -14,7 +14,7 @@ class Caesar
     input_validation 
     encrypt_text
   rescue ArgumentError => e  
-    warn e 
+    e.message
   end 
 
   private 
@@ -34,8 +34,8 @@ class Caesar
   end
 
   def input_validation
-    raise ArgumentError, "Invalid input" unless @key.positive?
+    raise ArgumentError, "Invalid input" unless @key.is_a?(Integer)
   end 
 end
 
-puts Caesar.new("What a string!", 5).call
+puts Caesar.new("What a string!", "a").call
